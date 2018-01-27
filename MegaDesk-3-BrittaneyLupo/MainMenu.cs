@@ -27,9 +27,9 @@ namespace MegaDesk_3_BrittaneyLupo
 
         private void viewButton_Click(object sender, EventArgs e)
         {
-            DisplayQuote addNewDisplayForm = new DisplayQuote();
-            addNewDisplayForm.Tag = this;
-            addNewDisplayForm.Show(this);
+            ViewAllQuotes addNewViewAllQuotesForm = new ViewAllQuotes();
+            addNewViewAllQuotesForm.Tag = this;
+            addNewViewAllQuotesForm.Show(this);
             Hide();
         }
 

@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.displayCancel);
             this.Name = "DisplayQuote";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DisplayQuote";
             this.ResumeLayout(false);
 

@@ -49,6 +49,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.quoteCancel);
             this.Name = "SearchQuotes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SearchQuotes";
             this.Load += new System.EventHandler(this.SearchQuotes_Load);
             this.ResumeLayout(false);

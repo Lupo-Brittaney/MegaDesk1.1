@@ -16,5 +16,12 @@ namespace MegaDesk_3_BrittaneyLupo
         {
             InitializeComponent();
         }
+
+        private void viewCancel_Click(object sender, EventArgs e)
+        {
+            var mainMenu = (MainMenu)Tag;
+                mainMenu.Show();
+                Close();
+        }
     }
 }

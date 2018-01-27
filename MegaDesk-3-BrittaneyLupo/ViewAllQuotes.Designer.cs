@@ -28,11 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.viewCancel = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // viewCancel
+            // 
+            this.viewCancel.Location = new System.Drawing.Point(197, 226);
+            this.viewCancel.Name = "viewCancel";
+            this.viewCancel.Size = new System.Drawing.Size(75, 23);
+            this.viewCancel.TabIndex = 0;
+            this.viewCancel.Text = "Cancel";
+            this.viewCancel.UseVisualStyleBackColor = true;
+            this.viewCancel.Click += new System.EventHandler(this.viewCancel_Click);
+            // 
+            // ViewAllQuotes
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.viewCancel);
+            this.Name = "ViewAllQuotes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewAllQuotes";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button viewCancel;
     }
 }
