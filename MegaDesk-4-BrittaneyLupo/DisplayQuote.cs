@@ -15,6 +15,7 @@ namespace MegaDesk_4_BrittaneyLupo
         public DisplayQuote()
         {
             InitializeComponent();
+            int deskQuote;
         }
 
         private void displayCancel_Click(object sender, EventArgs e)
