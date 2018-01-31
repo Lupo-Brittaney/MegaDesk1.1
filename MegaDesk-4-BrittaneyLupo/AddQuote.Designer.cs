@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_BrittaneyLupo
+﻿namespace MegaDesk_4_BrittaneyLupo
 {
     partial class AddQuote
     {
@@ -34,7 +34,6 @@
             this.submitButton = new System.Windows.Forms.Button();
             this.width = new System.Windows.Forms.TextBox();
             this.depth = new System.Windows.Forms.TextBox();
-            this.material = new System.Windows.Forms.ListBox();
             this.rush = new System.Windows.Forms.ListBox();
             this.drawers = new System.Windows.Forms.ListBox();
             this.widthLabel = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.material = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -98,19 +98,8 @@
             this.depth.Size = new System.Drawing.Size(30, 20);
             this.depth.TabIndex = 3;
             this.depth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Depth_KeyPress);
-            // 
-            // material
-            // 
-            this.material.FormattingEnabled = true;
-            this.material.Items.AddRange(new object[] {
-            "Oak",
-            "Pine",
-            "Veneer",
-            "Laminate"});
-            this.material.Location = new System.Drawing.Point(92, 46);
-            this.material.Name = "material";
-            this.material.Size = new System.Drawing.Size(120, 30);
-            this.material.TabIndex = 5;
+            this.depth.Validating += new System.ComponentModel.CancelEventHandler(this.Validating_Depth);
+            this.depth.Validated += new System.EventHandler(this.Validated_Depth);
             // 
             // rush
             // 
@@ -264,10 +253,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.material);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.drawers);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.material);
             this.groupBox2.Controls.Add(this.materialLabel);
             this.groupBox2.Location = new System.Drawing.Point(30, 166);
             this.groupBox2.Name = "groupBox2";
@@ -310,6 +299,20 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Pick one option ";
             // 
+            // material
+            // 
+            this.material.FormattingEnabled = true;
+            this.material.Items.AddRange(new object[] {
+            "Oak",
+            "Pine",
+            "Veneer",
+            "Laminate"});
+            this.material.Location = new System.Drawing.Point(92, 46);
+            this.material.Name = "material";
+            this.material.Size = new System.Drawing.Size(121, 21);
+            this.material.TabIndex = 5;
+            this.material.Text = "Select an option";
+            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,7 +350,6 @@
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.TextBox width;
         private System.Windows.Forms.TextBox depth;
-        private System.Windows.Forms.ListBox material;
         private System.Windows.Forms.ListBox rush;
         private System.Windows.Forms.ListBox drawers;
         private System.Windows.Forms.Label widthLabel;
@@ -367,5 +369,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox material;
     }
 }

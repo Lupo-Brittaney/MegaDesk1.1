@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MegaDesk_3_BrittaneyLupo
+namespace MegaDesk_4_BrittaneyLupo
 {
-    public partial class DisplayQuote : Form
+    public partial class ViewAllQuotes : Form
     {
-        public DisplayQuote()
+        public ViewAllQuotes()
         {
             InitializeComponent();
         }
 
-        private void displayCancel_Click(object sender, EventArgs e)
+        private void viewCancel_Click(object sender, EventArgs e)
         {
             var mainMenu = (MainMenu)Tag;
-            mainMenu.Show();
-            Close();
+                mainMenu.Show();
+                Close();
         }
     }
 }

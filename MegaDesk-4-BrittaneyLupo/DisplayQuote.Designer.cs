@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_BrittaneyLupo
+﻿namespace MegaDesk_4_BrittaneyLupo
 {
     partial class DisplayQuote
     {

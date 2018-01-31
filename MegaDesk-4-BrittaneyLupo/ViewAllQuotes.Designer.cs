@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_BrittaneyLupo
+﻿namespace MegaDesk_4_BrittaneyLupo
 {
     partial class ViewAllQuotes
     {
@@ -46,6 +46,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ControlBox = false;
             this.Controls.Add(this.viewCancel);
             this.Name = "ViewAllQuotes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

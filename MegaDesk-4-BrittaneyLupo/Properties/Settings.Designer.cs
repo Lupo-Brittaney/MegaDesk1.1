@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MegaDesk_3_BrittaneyLupo.Properties
+namespace MegaDesk_4_BrittaneyLupo.Properties
 {
 
 

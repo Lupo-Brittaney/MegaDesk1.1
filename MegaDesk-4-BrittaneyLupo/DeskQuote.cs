@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaDesk_3_BrittaneyLupo
+namespace MegaDesk_4_BrittaneyLupo
 {
-    class Desk
+    class DeskQuote
     {
     }
 }

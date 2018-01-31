@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MegaDesk_3_BrittaneyLupo
+namespace MegaDesk_4_BrittaneyLupo
 {
     public partial class AddQuote : Form
     {
@@ -82,6 +82,8 @@ namespace MegaDesk_3_BrittaneyLupo
             if (!Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 errorProvider2.SetError(depth, "Enter a number.");
+                depth.Select(0, depth.Text.Length);
+
             }
             else 
             {
@@ -89,5 +91,52 @@ namespace MegaDesk_3_BrittaneyLupo
             }
         }
 
+
+ 
+
+        private void Validating_Depth(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!ValidateDepth(depth.Text, out errorMsg))
+            {
+                //Cancel the event and selest the width box to be corrected
+                e.Cancel = true;
+                depth.Select(0, depth.Text.Length);
+
+                //Set the ErrorProvider 
+                this.errorProvider1.SetError(depth, errorMsg);
+
+            }
+        }
+        private void Validated_Depth(object sender, EventArgs e)
+        {
+            //If all conditions have been met clear the error provider
+            errorProvider1.SetError(depth, "");
+        }
+        public bool ValidateDepth(string depth, out string errorMessage)
+        {
+            //conrifrm the width was not left empty 
+            if (depth.Length == 0)
+            {
+                errorMessage = "Depth is required.";
+                return false;
+            }
+
+            //turn depth into an int
+            int intDepth;
+            Int32.TryParse(depth, out intDepth);
+
+            //check if numerical falls within parameters
+            if (intDepth >= 12 && intDepth <= 48)
+            {
+                errorMessage = "";
+                return true;
+            }
+            errorMessage = "Invalid number";
+            return false;
+            
+        }
+
+    
     }
 }
