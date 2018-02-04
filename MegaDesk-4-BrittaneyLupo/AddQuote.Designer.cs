@@ -31,11 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddQuote));
             this.addCancel = new System.Windows.Forms.Button();
-            this.submitButton = new System.Windows.Forms.Button();
+            this.AddQuoteButton = new System.Windows.Forms.Button();
             this.width = new System.Windows.Forms.TextBox();
             this.depth = new System.Windows.Forms.TextBox();
-            this.rush = new System.Windows.Forms.ListBox();
-            this.drawers = new System.Windows.Forms.ListBox();
             this.widthLabel = new System.Windows.Forms.Label();
             this.depthLabel = new System.Windows.Forms.Label();
             this.materialLabel = new System.Windows.Forms.Label();
@@ -43,17 +41,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.customerNameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.drawers = new System.Windows.Forms.ComboBox();
+            this.material = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rush = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.material = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -71,14 +71,15 @@
             this.addCancel.UseVisualStyleBackColor = true;
             this.addCancel.Click += new System.EventHandler(this.addCancel_Click);
             // 
-            // submitButton
+            // AddQuoteButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(30, 422);
-            this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(75, 23);
-            this.submitButton.TabIndex = 10;
-            this.submitButton.Text = "Submit";
-            this.submitButton.UseVisualStyleBackColor = true;
+            this.AddQuoteButton.Location = new System.Drawing.Point(30, 422);
+            this.AddQuoteButton.Name = "AddQuoteButton";
+            this.AddQuoteButton.Size = new System.Drawing.Size(75, 23);
+            this.AddQuoteButton.TabIndex = 10;
+            this.AddQuoteButton.Text = "Submit";
+            this.AddQuoteButton.UseVisualStyleBackColor = true;
+            this.AddQuoteButton.Click += new System.EventHandler(this.AddQuoteButton_Click);
             // 
             // width
             // 
@@ -87,6 +88,7 @@
             this.width.Name = "width";
             this.width.Size = new System.Drawing.Size(30, 20);
             this.width.TabIndex = 2;
+            this.width.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Check_KeyPress);
             this.width.Validating += new System.ComponentModel.CancelEventHandler(this.Width_Validating);
             this.width.Validated += new System.EventHandler(this.Width_Validated);
             // 
@@ -97,39 +99,9 @@
             this.depth.Name = "depth";
             this.depth.Size = new System.Drawing.Size(30, 20);
             this.depth.TabIndex = 3;
-            this.depth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Depth_KeyPress);
+            this.depth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Check_KeyPress);
             this.depth.Validating += new System.ComponentModel.CancelEventHandler(this.Validating_Depth);
             this.depth.Validated += new System.EventHandler(this.Validated_Depth);
-            // 
-            // rush
-            // 
-            this.rush.FormattingEnabled = true;
-            this.rush.Items.AddRange(new object[] {
-            "No Rush",
-            "3 days",
-            "5 days",
-            "7 days"});
-            this.rush.Location = new System.Drawing.Point(91, 54);
-            this.rush.Name = "rush";
-            this.rush.Size = new System.Drawing.Size(120, 30);
-            this.rush.TabIndex = 8;
-            // 
-            // drawers
-            // 
-            this.drawers.FormattingEnabled = true;
-            this.drawers.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7"});
-            this.drawers.Location = new System.Drawing.Point(92, 92);
-            this.drawers.Name = "drawers";
-            this.drawers.Size = new System.Drawing.Size(120, 30);
-            this.drawers.TabIndex = 6;
             // 
             // widthLabel
             // 
@@ -161,11 +133,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 54);
+            this.label4.Location = new System.Drawing.Point(16, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Rush";
+            this.label4.Text = "Rush ";
             // 
             // label5
             // 
@@ -185,13 +157,13 @@
             // 
             this.errorProvider2.ContainerControl = this;
             // 
-            // textBox1
+            // customerNameBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 18);
-            this.textBox1.MaxLength = 55;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(179, 20);
-            this.textBox1.TabIndex = 0;
+            this.customerNameBox.Location = new System.Drawing.Point(114, 18);
+            this.customerNameBox.MaxLength = 55;
+            this.customerNameBox.Name = "customerNameBox";
+            this.customerNameBox.Size = new System.Drawing.Size(179, 20);
+            this.customerNameBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -253,9 +225,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.drawers);
             this.groupBox2.Controls.Add(this.material);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.drawers);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.materialLabel);
             this.groupBox2.Location = new System.Drawing.Point(30, 166);
@@ -264,6 +236,37 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Desk Contruction";
+            // 
+            // drawers
+            // 
+            this.drawers.FormattingEnabled = true;
+            this.drawers.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.drawers.Location = new System.Drawing.Point(92, 92);
+            this.drawers.Name = "drawers";
+            this.drawers.Size = new System.Drawing.Size(121, 21);
+            this.drawers.TabIndex = 6;
+            this.drawers.Text = "0";
+            // 
+            // material
+            // 
+            this.material.FormattingEnabled = true;
+            this.material.Items.AddRange(new object[] {
+            "Oak",
+            "Pine",
+            "Veneer",
+            "Laminate"});
+            this.material.Location = new System.Drawing.Point(92, 46);
+            this.material.Name = "material";
+            this.material.Size = new System.Drawing.Size(121, 21);
+            this.material.TabIndex = 5;
             // 
             // label7
             // 
@@ -278,15 +281,29 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.rush);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.rush);
             this.groupBox3.Location = new System.Drawing.Point(31, 312);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 100);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Shipping Options";
+            // 
+            // rush
+            // 
+            this.rush.FormattingEnabled = true;
+            this.rush.Items.AddRange(new object[] {
+            "None",
+            "3 Days",
+            "5 Days",
+            "7 Days"});
+            this.rush.Location = new System.Drawing.Point(91, 54);
+            this.rush.Name = "rush";
+            this.rush.Size = new System.Drawing.Size(121, 21);
+            this.rush.TabIndex = 8;
+            this.rush.Text = "none";
             // 
             // label8
             // 
@@ -299,20 +316,6 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Pick one option ";
             // 
-            // material
-            // 
-            this.material.FormattingEnabled = true;
-            this.material.Items.AddRange(new object[] {
-            "Oak",
-            "Pine",
-            "Veneer",
-            "Laminate"});
-            this.material.Location = new System.Drawing.Point(92, 46);
-            this.material.Name = "material";
-            this.material.Size = new System.Drawing.Size(121, 21);
-            this.material.TabIndex = 5;
-            this.material.Text = "Select an option";
-            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,14 +326,13 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.submitButton);
+            this.Controls.Add(this.customerNameBox);
+            this.Controls.Add(this.AddQuoteButton);
             this.Controls.Add(this.addCancel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddQuote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddQuote";
-            this.Load += new System.EventHandler(this.AddQuote_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -347,11 +349,9 @@
         #endregion
 
         private System.Windows.Forms.Button addCancel;
-        private System.Windows.Forms.Button submitButton;
+        private System.Windows.Forms.Button AddQuoteButton;
         private System.Windows.Forms.TextBox width;
         private System.Windows.Forms.TextBox depth;
-        private System.Windows.Forms.ListBox rush;
-        private System.Windows.Forms.ListBox drawers;
         private System.Windows.Forms.Label widthLabel;
         private System.Windows.Forms.Label depthLabel;
         private System.Windows.Forms.Label materialLabel;
@@ -360,15 +360,17 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox customerNameBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox material;
+        private System.Windows.Forms.ComboBox drawers;
+        private System.Windows.Forms.ComboBox rush;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,22 @@ namespace MegaDesk_4_BrittaneyLupo
 {
     public partial class AddQuote : Form
     {
+        //variables needed
+        string CustomerName = String.Empty;
+        int DeskWidth = 0;
+        int DeskDepth = 0;
+        int Drawers = 0;
+        int RushDays = 0;
+        int QuoteTotal = 0;
+        DeskMaterial DeskMaterial;
+        string DateNow = String.Empty;
+
         public AddQuote()
         {
             InitializeComponent();
+            //create the list for the materaial combobox from the enum materials
+            List<DeskMaterial> DeskMaterialList = Enum.GetValues(typeof(DeskMaterial)).Cast<DeskMaterial>().ToList();
+            material.DataSource = DeskMaterialList;
         }
 
         private void addCancel_Click(object sender, EventArgs e)
@@ -23,6 +37,16 @@ namespace MegaDesk_4_BrittaneyLupo
             mainMenu.Show();
             Close();
         }
+
+        //check for digits in width and depth
+        private void Check_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         //Vallidate the width input
         private void Width_Validating(object sender, CancelEventArgs e)
         {
@@ -72,28 +96,7 @@ namespace MegaDesk_4_BrittaneyLupo
 
         }
 
-        private void AddQuote_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Depth_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
-            {
-                errorProvider2.SetError(depth, "Enter a number.");
-                depth.Select(0, depth.Text.Length);
-
-            }
-            else 
-            {
-                errorProvider2.SetError(depth, "");
-            }
-        }
-
-
- 
-
+        //Validate the depth Quote
         private void Validating_Depth(object sender, CancelEventArgs e)
         {
             string errorMsg;
@@ -137,6 +140,90 @@ namespace MegaDesk_4_BrittaneyLupo
             
         }
 
-    
+        private void AddQuoteButton_Click(object sender, EventArgs e)
+        {
+            //get inputs
+            try
+            {
+                CustomerName = customerNameBox.Text;
+                DeskDepth = int.Parse(depth.Text);
+                DeskWidth = int.Parse(width.Text);
+                Drawers = int.Parse(drawers.SelectedItem.ToString());
+                DateNow = DateTime.Now.ToString("MM/dd/yyyy");
+
+                //get material string from emun
+                string Material = material.SelectedItem.ToString();
+                Enum.TryParse(Material, out DeskMaterial);
+
+                //get rush days
+                string rushDays = rush.SelectedItem.ToString();
+
+             
+                switch(rushDays)
+                {
+                    case "None":
+                        RushDays = 0;
+                        break;
+                    case "3 Days":
+                        RushDays = 3;
+                        break;
+                    case "5 Days":
+                        RushDays = 5;
+                        break;
+                    case "7 Days":
+                        RushDays = 7;
+                        break;
+                    
+                }
+                //create the new desk quote and calculate the total
+                DeskQuote NewOrder = new DeskQuote(CustomerName, DateTime.Now, DeskWidth, DeskDepth, Drawers, RushDays, DeskMaterial);
+                QuoteTotal = NewOrder.GetQuoteTotal();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error occurred");
+                throw;
+            }
+            try
+            {
+                //build string for writing
+                var QuoteRecord = CustomerName + ", " + DateNow + ", " + DeskWidth + ", " + DeskDepth + ", " + Drawers + ", " + RushDays + ", " + DeskMaterial + ", " + QuoteTotal;
+                string cfile = @"quote.txt";
+                if (!File.Exists(cfile))
+                {
+                    using (StreamWriter sw = File.CreateText("quote.txt")) 
+                    {
+
+                    }
+                }
+                using (StreamWriter sw = File.AppendText("quote.txt"))
+                {
+                    sw.WriteLine(QuoteRecord);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in writing to file");
+                throw;
+
+            }
+
+
+            //show the quote page
+            var MainMenu = (MainMenu)Tag;
+            DisplayQuote newOrderView = new DisplayQuote(CustomerName, DateNow, DeskWidth, DeskDepth, Drawers,  DeskMaterial, RushDays, QuoteTotal)
+            {
+                Tag = MainMenu
+            };
+            newOrderView.Show();
+            this.Close();
+
+            
+        }
     }
 }

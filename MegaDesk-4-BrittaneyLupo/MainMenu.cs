@@ -19,6 +19,12 @@ namespace MegaDesk_4_BrittaneyLupo
 
         private void addButton_Click(object sender, EventArgs e)
         {
+           /* AddQuote addQuote = new AddQuote
+            {
+                Tag = this
+            };
+            addQuote.Show(this);
+            Hide();*/
             AddQuote addNewQuoteForm = new AddQuote();
             addNewQuoteForm.Tag = this;
             addNewQuoteForm.Show(this);
@@ -43,7 +49,7 @@ namespace MegaDesk_4_BrittaneyLupo
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
     }
 }
